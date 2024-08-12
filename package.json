@@ -4,6 +4,9 @@
   "description": "pra",
   "main": "server.js",
   "type": "module",
+  "workspaces": [
+    "frontend"
+  ],
   "scripts": {
     "start": "node backend/server.js",
     "dev": "nodemon backend/server.js"
