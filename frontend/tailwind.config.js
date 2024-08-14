@@ -4,8 +4,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter var'],
-      }
+        mono: [ "SFMono-Regular", "Courier New"]
+      },
     },
   },
   plugins: [],

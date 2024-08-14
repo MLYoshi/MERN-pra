@@ -1,23 +1,26 @@
 import {BrowserRouter , Routes, Route} from "react-router-dom"
-import Login from "./pages/login"
-import Register from "./pages/register"
+import Login from "./pages/Login.jsx"
+import Register from "./pages/Register.jsx"
 import Dashboard from "./pages/Dashboard"
 import Header from "./components/header"
+import { ToastContainer } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css'
 
 const App = () => {
   return (
     <>
-    
-    <div >
-      <BrowserRouter className="flex">
-        <Header  />
-        <Routes className="self-center items-center" >
+    <BrowserRouter >
+      <div className="text-center shadows-into-light-regular" >
+      
+        <Header />
+        <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
         </Routes>
-      </BrowserRouter>
-    </div>
+      </div>
+    </BrowserRouter>
+    <ToastContainer />
     </>
   )
 }
