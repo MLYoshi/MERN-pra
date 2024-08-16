@@ -40,6 +40,11 @@ const updateGoals = asyncHandler( async (req, res)=> {
         throw new Error("not find to update")
     }
 
+    if(!req.user) {
+        res.status(401)
+        throw new Error("User not found")
+    }
+
     if (goal.user.toString() !== req.user.id){
         res.status(401)
         throw new Error("Not authorized user")
@@ -61,6 +66,11 @@ const deleteGoals = asyncHandler ( async (req, res)=> {
     if(!goal){
         res.status(400)
         throw new Error("not find to delete")
+    }
+
+    if(!req.user) {
+        res.status(401)
+        throw new Error("User not found")
     }
 
     if (goal.user.toString() !== req.user.id){

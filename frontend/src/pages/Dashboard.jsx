@@ -1,15 +1,25 @@
-import {useState, useEffect} from 'react'
+import {useEffect} from 'react'
+import {useNavigate} from 'react-router-dom'
+import {useSelector} from 'react-redux'
+import GoalForm from '../components/GoalForm'
 
 const Dashboard = () => {
+  const navigate = useNavigate()
+
+  const {user} = useSelector((state) => state.auth)
+
+  useEffect(()=>{
+    if (!user) {
+      navigate('/login')
+    }
+  }, [user])
+
   return (
-    <>
-    <section className="pt-8">
-      <h1 className='text-5xl'>
-        Dashboard
-      </h1>
-      <p>Pls create an account</p>
+    <section className="heading pt-8">
+      <h1>Welcome {user && user.name}</h1>
+      <p>Goals Dashboard</p>
+      <GoalForm />
     </section>
-    </>
   )
 }
 
