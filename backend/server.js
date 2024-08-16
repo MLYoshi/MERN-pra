@@ -15,7 +15,8 @@ const app = express()
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*'); // 或者指定一个特定的域名
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Authorization');
+    res.header('Access-Control-Allow-Method', 'POST');
     next();
   });
 
