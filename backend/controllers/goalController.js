@@ -26,7 +26,7 @@ const setGoals = asyncHandler (async (req, res)=> {
         }
     )
     
-    res.status(200).json({msg: goal})
+    res.status(200).json(goal)
 })
 
 // @desc    Update goal
