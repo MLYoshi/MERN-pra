@@ -1,3 +1,4 @@
+import path from 'path'
 import express from 'express'
 import colors  from 'colors'
 import connectDB from './config/db.js'
@@ -23,9 +24,18 @@ app.use((req, res, next) => {
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
+
+
 app.use("/api/goals", goalRouter)
 app.use("/api/users", userRouter)
 
 app.use(errorHandler)
+
+if (process.env.NODE_ENV == 'production'){
+  const __dirname = path.resolve()
+  app.use(express.static(path.join(__dirname, 'frontend/dist')))
+
+  app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html' )))
+}
 
 app.listen(port, ()=>console.log(`server running on port ${port}`))

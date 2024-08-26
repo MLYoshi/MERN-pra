@@ -24,11 +24,12 @@ const Dashboard = () => {
       navigate('/login')
     }
 
-    dispatch(getGoals())
-
-    return () => {
-      dispatch(reset())
+    if(user){
+      dispatch(getGoals())
     }
+
+      dispatch(reset())
+
   }, [user, isError, message])
 
   if (isLoading){
@@ -41,11 +42,11 @@ const Dashboard = () => {
       <p>Goals Dashboard</p>
       <GoalForm />
       
-      <section className='display '>
+      {!Array.isArray(goal) ? ( console.log('not array')) : (<section className='display '>
         {goal.length > 0 ? (<div className='px-28 py-10 [&>*:nth-child(odd)]:bg-cyan-600 [&>*:nth-child(even)]:bg-yellow-800'>
           { goal.map((goal) => (<GoalItems key={goal._id} goal={goal}/>))} </div>)
          : (<h1>you dont have goal</h1>)}
-      </section>
+      </section>)}
     </section>
   )
 }
